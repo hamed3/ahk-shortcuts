@@ -2,8 +2,8 @@
 
 isMediaLocked := true
 mediaLockedKeyPressed := false
-
-
+xpos := 0
+ypos := 0
 
 ;reddit
 :*:s/r/::site:reddit.com/r/
@@ -119,7 +119,17 @@ openSoundLevels(){
     ;Send {down 2}{alt down}{p}{alt up}{shift down}{tab}{shift up}{right}{alt down}{l}{alt up}
 }
 
+getMousePos(){
+	global xpos
+	global ypos
+	MouseGetPos, xpos, ypos
+}
 
+setMousePos(){
+	global xpos
+	global ypos
+	MouseMove, xpos, ypos
+}
 
 NumpadEnd::youtubeSpeed("<")
 NumpadHome::youtubeSpeed(">")
@@ -138,3 +148,8 @@ NumpadLeft::shift
 NumpadDiv::setSoundZero()
 NumpadRight::lockMediaButton()
 NumpadRight Up::endHold()
+
+;[alt+m] mark mouse position
+!m:: getMousePos()
+;[alt+n] go to marked mouse position
+!n:: setMousePos()
