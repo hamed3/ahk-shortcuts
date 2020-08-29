@@ -115,8 +115,13 @@ endHold(){
 }
 
 openSoundLevels(){
+	Send, {ESC}
     Run control mmsys.cpl playback
-    ;Send {down 2}{alt down}{p}{alt up}{shift down}{tab}{shift up}{right}{alt down}{l}{alt up}
+	WinWaitActive, Sound,,2
+    Send, {down 2}
+	Send, {alt down}{p}{alt up}
+	Send, {ctrl down}{tab}{ctrl up}
+	Send, {alt down}{b}{alt up}
 }
 
 getMousePos(){
@@ -129,6 +134,15 @@ setMousePos(){
 	global xpos
 	global ypos
 	MouseMove, xpos, ypos
+}
+
+clearNotifications(){
+	send, {RWin down}{a}{RWin up}
+	send, {LShift down}{Tab 3}{LShift up}
+	sleep, 200
+	send, {space}
+	sleep, 200
+	send, {RWin down}{a}{RWin up}
 }
 
 NumpadEnd::youtubeSpeed("<")
@@ -153,3 +167,5 @@ NumpadRight Up::endHold()
 !m:: getMousePos()
 ;[alt+n] go to marked mouse position
 !n:: setMousePos()
+;[alt+c] clear notifications
+!c:: clearNotifications()
