@@ -145,6 +145,11 @@ clearNotifications(){
 	send, {RWin down}{a}{RWin up}
 }
 
+toggleCurrentWindowOnTop(){
+	WinGetActiveTitle, currentWindow
+	WinSet, AlwaysOnTop,,%currentWindow%
+}
+
 NumpadEnd::youtubeSpeed("<")
 NumpadHome::youtubeSpeed(">")
 NumpadUp::changeDesktop("Right")
@@ -169,3 +174,5 @@ NumpadRight Up::endHold()
 !n:: setMousePos()
 ;[alt+c] clear notifications
 !c:: clearNotifications()
+;[ctrl+space] current window always on top
+^Space:: toggleCurrentWindowOnTop()
