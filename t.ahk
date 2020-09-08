@@ -138,16 +138,23 @@ setMousePos(){
 
 clearNotifications(){
 	send, {RWin down}{a}{RWin up}
+	sleep, 200
 	send, {LShift down}{Tab 3}{LShift up}
 	sleep, 200
 	send, {space}
 	sleep, 200
-	send, {RWin down}{a}{RWin up}
+	send, {Escape}
 }
 
 toggleCurrentWindowOnTop(){
 	WinGetActiveTitle, currentWindow
 	WinSet, AlwaysOnTop,,%currentWindow%
+}
+
+runBash(){
+	RUN bash.exe
+	sleep, 400
+	SendInput, cd`nsu`nclear`n
 }
 
 NumpadEnd::youtubeSpeed("<")
@@ -176,3 +183,5 @@ NumpadRight Up::endHold()
 !c:: clearNotifications()
 ;[ctrl+space] current window always on top
 ^Space:: toggleCurrentWindowOnTop()
+;[ctrl+alt+t] open ubuntu bash terminal
+^!t::runBash()
